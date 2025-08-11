@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-class ArguementsException extends Exception {
-
+class ArguementsException extends Exception
+{
     public function __construct(?string $message,
                                 int $code = 0,
                                 ?Throwable $previous = null) {
@@ -13,5 +13,4 @@ class ArguementsException extends Exception {
     public function getErrorMessage():string {
         return "Invalid Arguement(s): " . $this->getMessage();
     }
-
 }
