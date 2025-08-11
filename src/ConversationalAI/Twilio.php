@@ -12,7 +12,6 @@ use coreylang\ElevenLabsAI\ElevenLabs;
 use coreylang\ElevenLabsAI\Auth;
 
 use GuzzleHttp\Client;
-use Exceptions\ArguementsException;
 
 class Twilio extends ElevenLabs
 {
