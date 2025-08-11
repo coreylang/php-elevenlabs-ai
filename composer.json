@@ -1,0 +1,21 @@
+{
+    "name": "coreylang/php-elevenlabs-ai",
+    "description": "A PHP package to make calls to the ElevenLabs AI API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Corey Lang",
+            "email": "coreylang.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "coreylang\\ElevenlabsAI\\": "src/"
+        }
+    }
+}
+
