@@ -2,6 +2,12 @@
     "name": "coreylang/php-elevenlabs-ai",
     "description": "A PHP package to make calls to the ElevenLabs AI API",
     "type": "library",
+    "keywords": [
+        "elevenlabs",
+        "ai",
+        "conversational ai"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Corey Lang",
