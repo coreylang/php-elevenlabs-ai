@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "coreylang\\ElevenlabsAI\\": "src/"
+            "coreylang\\ElevenLabsAI\\": "src/"
         }
     }
 }
