@@ -12,6 +12,7 @@ use coreylang\ElevenLabsAI\ElevenLabs;
 use coreylang\ElevenLabsAI\Auth;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class Twilio extends ElevenLabs
 {
@@ -63,8 +64,8 @@ class Twilio extends ElevenLabs
                                         : [];
 
         $headers = [
-            "Content-Type: application/json",
-            "xi-api-key: " . $this->GetAuthKey()
+            "Content-Type" => "application/json",
+            "xi-api-key" => $this->GetAuthKey()
         ];
 
         $payload = [];
@@ -103,7 +104,7 @@ class Twilio extends ElevenLabs
                 "json" => $payload,
                 "headers" => $headers
             ]);
-        } catch(Exception $e) {
+        } catch(RequestException $e) {
             throw $e->getMessage();
         }
 
