@@ -24,7 +24,6 @@ class Twilio extends ElevenLabs
      */
     public function MakeOutboundCall(array $argsArray):mixed
     {
-
         //  $argsArray:
         //  [Agent_Id] => required, string, the elevenlabs ai caller agent unique id
         //  [Agent_Phone_Number_Id] => required, string, an elevenlabs phone number unique id to call from
@@ -56,7 +55,7 @@ class Twilio extends ElevenLabs
         $initiationLanguage = ($argsArray['Initiation_Language']) ?? "";
         $initiationVoiceId = ($argsArray['Intitiation_Voice_Id']) ?? "";
         $initiationDynamicVariables = (!empty($argsArray['Initiation_Dynamic_Variables']))
-                                        ? $argsArray['Intiation_Dynamic_Variables']
+                                        ? $argsArray['Initiation_Dynamic_Variables']
                                         : [];
 
         $headers = [
