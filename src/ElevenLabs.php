@@ -21,5 +21,17 @@ trait Auth
 
 class ElevenLabs
 {
-    use Auth;
+    /**
+     * Returns an API error response object.
+     * 
+     * @param object the message to be returned
+     * @return object the response object
+     */
+    protected function ReturnErrorResponse(string $message):object
+    {
+        $response = new \stdClass();
+        $response->message = $message;
+
+        return $response;
+    }
 }
