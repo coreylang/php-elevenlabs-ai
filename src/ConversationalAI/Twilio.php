@@ -30,7 +30,7 @@ class Twilio extends ElevenLabs
         //  [To_Phone_Number] => required, numeric, the phone number to make the outbound call to
         //  [Initiation_Prompt] => optional, text, the agent system prompt
         //  [Initiation_First_Message] => optional, text, the agent greeting or first message
-        //  [Initiation_Language] => optional, string, the speaking language of the agent
+        //  [Initiation_Language] => optional, string, the language the agent speaks
         //  [Initiation_Voice_Id] => optional, string, the voice id of the agent
         //  [Initiation_Dynamic_Variables] => optional, array, an array of dynamic variables
         //  [
@@ -95,14 +95,15 @@ class Twilio extends ElevenLabs
 
         try {
             $client = new Client();
-            $response = $client->post("https://api.us.elevenlabs.io/v1/convai/twilio/outbound_call", [
+            $result = $client->post("https://api.us.elevenlabs.io/v1/convai/twilio/outbound_call", [
                 "json" => $payload,
                 "headers" => $headers
             ]);
+            $response = $result->getBody()->getContents();
         } catch(RequestException $e) {
             throw $e->getMessage();
         }
 
-        return true;
+        return $response;
     }
 }
