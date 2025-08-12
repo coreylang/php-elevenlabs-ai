@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace coreylang\ElevenLabsAI\ConversationalAI;
+namespace coreylang\ElevenLabsAI\SIPTrunk;
 
 use coreylang\ElevenLabsAI\Auth;
 use coreylang\ElevenLabsAI\ElevenLabs;
@@ -120,7 +120,7 @@ class SIPTrunk extends ElevenLabs
 
             try {
                 $client = new Client();
-                $result = $client->post("https://api.us.elevenlabs.io/v1/convai/twilio/outbound_call", [
+                $result = $client->post("https://api.us.elevenlabs.io/v1/convai/sip-trunk/outbound_call", [
                     "json" => $payload,
                     "headers" => $headers
                 ]);
