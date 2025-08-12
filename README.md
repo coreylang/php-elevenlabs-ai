@@ -56,10 +56,10 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConversationalAI\Twilio;
+use coreylang\ElevenLabsAI\SIPTrunk\;
 
 try {
-    $client = new Twilio();
+    $client = new SIPTrunk();
 
     $client->SetAuthKey('{AUTH_KEY}');
 
