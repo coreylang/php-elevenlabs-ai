@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-/**
-*
-*/
-
 namespace coreylang\ElevenLabsAI\ConversationalAI;
 
 use coreylang\ElevenLabsAI\ElevenLabs;
