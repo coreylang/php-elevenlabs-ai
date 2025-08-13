@@ -22,7 +22,7 @@ class Twilio extends ElevenLabs
      * @return Boolean true if the outbound call is started
      * @throws Exception if an arguement is invalid or missing
      */
-    public function MakeOutboundCall(array $argsArray):mixed
+    public function MakeOutboundCall(array $argsArray):object
     {
         //  $argsArray:
         //  [Agent_Id] => required, string, the elevenlabs ai caller agent unique id
