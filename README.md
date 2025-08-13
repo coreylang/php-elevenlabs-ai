@@ -37,7 +37,7 @@ try {
     $params['Initiation_User_Id'] = "{Custom_User_Id}";
     $params['Initiation_Source'] = "{Application_Source_Name}";
     $params['Initiation_Version'] = "{Application_Version}";
-    $params['Initiation_Dynamic_Variables'] = array (
+    $params['Initiation_Dynamic_Variables'] = array(
         'first_name' => 'Corey Lang'
     );
 
@@ -78,7 +78,7 @@ try {
     $params['Initiation_User_Id'] = "{Custom_User_Id}";
     $params['Initiation_Source'] = "{Application_Source_Name}";
     $params['Initiation_Version'] = "{Application_Version}";
-    $params['Initiation_Dynamic_Variables'] = array (
+    $params['Initiation_Dynamic_Variables'] = array(
         'first_name' => 'Corey Lang'
     );
 
