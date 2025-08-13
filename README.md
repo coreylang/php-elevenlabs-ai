@@ -1,5 +1,5 @@
 # PHP ElevenLabs AI
-The current release, v0.1.1-beta, has functionality for only one API call. That is to make an outbound call using Twilio, using the ElevenLabs Conversational AI API. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+The current release, v0.3.1-beta, has two calls. To make an outbound call using Twilio, and make an outbound call using SIP Trunk. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
 
 ## Install
 ```
