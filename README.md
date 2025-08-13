@@ -1,6 +1,10 @@
 # PHP ElevenLabs AI
 The current release, v0.3.1-beta, has two calls. To make an outbound call using Twilio, and make an outbound call using SIP Trunk. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
 
+# Need Help?
+
+Email me coreylang.dev@gmail.com
+
 ## Install
 ```
 composer require coreylang/php-elevenlabs-ai
