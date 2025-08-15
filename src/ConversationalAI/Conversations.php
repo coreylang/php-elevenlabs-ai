@@ -73,7 +73,7 @@ class Conversations extends ElevenLabs
      * @param string $conversation_id the conversation id
      * @return object the response object
      */
-    public function DeleteConversation(string $conversation_id): object
+    public function DeleteConversation(string $conversation_id): mixed
     {
         $headers = [
             "Content-Type" => "application/json",
@@ -82,10 +82,10 @@ class Conversations extends ElevenLabs
 
         try {
             $client = new Client();
-            $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
+            $result = $client->delete("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
                 "headers" => $headers
             ]);
-            $response = json_decode($result->getBody()->getContents(), false);
+            $response = $result->getBody()->getContents();
         } catch(Exception $e) {
             $response = $e->getMessage();
         }
