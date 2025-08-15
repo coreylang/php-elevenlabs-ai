@@ -180,4 +180,43 @@ class Conversations extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Get a list of Elevenlabs conversations
+     * 
+     * @param array an array of list conversations options
+     * @return object the response object
+     */
+    public function ListConversations(array $options):object
+    {
+        //  $options: (all optional)
+        //
+        //  ['cursor'] => string, used for fetching next page. Cursor is returned in ther response.
+        //  ['agent_id'] => string, the id of the agent you're taking the action on.
+        //  ['call_successful'] = string, the result of the success evalution.
+        //  ['call_start_before_unix'] = number, unix timestamp (in seconds) to filter conversations up to this start date.
+        //  ['call_start_after_unix'] = number, unix timestamp (in seconds) to filter conversations after to this start date.
+        //  ['user_id'] = string, filter conversations by the user id who initiated them.
+        //  ['page_size'] = number, how many conversations to return at maximum. Can not exceed 100, defaults to 30.
+        //  ['summary_mode'] = string, whether to include transcript summaries in the response.
+
+
+         $headers = [
+            "xi-api-key" => $this->GetAuthKey()
+        ];
+
+        try {
+            $client = new Client();
+            $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations", [
+                "headers" => $headers,
+                "query" => $options,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
