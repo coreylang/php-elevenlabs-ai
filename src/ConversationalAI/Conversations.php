@@ -117,4 +117,33 @@ class Conversations extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Get a WebRTC session token for real-time communication
+     * 
+     * @param string $agent_id the agent id
+     * @param string $participantName optional custom participant name if not provided user id will be used
+     */
+    public function GetConversationToken(string $agent_id, ?string $participantName): object
+    {
+        $headers = [
+            "xi-api-key" => $this->GetAuthKey()
+        ];
+
+        try {
+            $client = new Client();
+            $result = $client->get("https://api.elevenlabs.io/v1/convai/conversation/token", [
+                "headers" => $headers,
+                "query" => [
+                    'agent_id' => $agent_id,
+                    'participant_name' => $participantName
+                ]
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
