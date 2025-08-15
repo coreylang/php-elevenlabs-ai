@@ -45,7 +45,7 @@ class Conversations extends ElevenLabs
      * Get a ElevenLabs conversation audio
      * 
      * @param string $conversation_id the conversation id
-     * @return mixed the response object
+     * @return mixed the response object or error message
      */
     public function GetConversationAudio(string $conversation_id):mixed
     {
@@ -126,6 +126,7 @@ class Conversations extends ElevenLabs
      * 
      * @param string $agent_id the agent id
      * @param string $participantName optional custom participant name if not provided user id will be used
+     * @return object the response object
      */
     public function GetConversationToken(string $agent_id, ?string $participantName): object
     {
@@ -156,6 +157,7 @@ class Conversations extends ElevenLabs
      * 
      * @param string the conversation id
      * @param string the feedback, either 'like' or 'dislike'
+     * @return object the response object
      */
     public function SendConversationFeedback(string $conversation_id, ?string $feedback):object
     {
