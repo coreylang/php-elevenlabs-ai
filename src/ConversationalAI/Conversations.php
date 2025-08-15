@@ -92,4 +92,29 @@ class Conversations extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Get a Elevenlabs signed url to start a conversation with an agent that requires authorization
+     * 
+     * @param string $agent_id the agent id
+     * @return object the response object
+     */
+    public function GetSignedURL(string $agent_id): object
+    {
+        $headers = [
+            "xi-api-key" => $this->GetAuthKey()
+        ];
+
+        try {
+            $client = new Client();
+            $result = $client->get("https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=$agent_id", [
+                "headers" => $headers
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
