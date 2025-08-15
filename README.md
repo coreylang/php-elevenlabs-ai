@@ -1,5 +1,5 @@
 # PHP ElevenLabs AI
-The current release, v0.3.1-beta, has two calls. To make an outbound call using Twilio, and make an outbound call using SIP Trunk. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+The current release, v0.4.1-beta, has calls to Twilo, SIP Trunk, and Conversations APIs. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
 
 # Need Help?
 
@@ -10,7 +10,9 @@ Email me coreylang.dev@gmail.com
 composer require coreylang/php-elevenlabs-ai
 ```
 
-## Twilio MakeOutboundCall() Example Usage
+## Twilio
+
+###  Make Outbound Call Example
 
 - Returns a response object.
 
@@ -51,7 +53,9 @@ try {
 }
 ```
 
-## SIP Trunk MakeOutboundCall() Example Usage
+## SIP Trunk
+
+###  Make Outbound Call Example
 
 - Returns a response object.
 
@@ -60,7 +64,7 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\SIPTrunk\;
+use coreylang\ElevenLabsAI\ConversationalAI\SIPTrunk;
 
 try {
     $client = new SIPTrunk();
@@ -87,6 +91,74 @@ try {
     );
 
     $result = $client->MakeOutboundCall($params);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+## Conversations
+
+### Get Conversation Details Example
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+
+$conversationId = "{CONVERSATION_ID}";
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey($authKey);
+
+    $conversation = $client->GetConversationDetails($conversationId);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Get Conversation Audio Example
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+
+$conversationId = "{CONVERSATION_ID}";
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey($authKey);
+
+    $audio = $client->GetConversationAudio($conversationId);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Delete Conversation Example
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+
+$conversationId = "{CONVERSATION_ID}";
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey($authKey);
+
+    $audio = $client->DeleteConversation($conversationId);
 } catch(Exception $e) {
     echo $e->getMessage();
 }
