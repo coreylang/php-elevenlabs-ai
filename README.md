@@ -105,7 +105,7 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -127,7 +127,7 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -149,7 +149,7 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -171,7 +171,7 @@ try {
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
 
 $agent_id = "{AGENT_ID}";
 
@@ -181,6 +181,30 @@ try {
     $client->SetAuthKey('{API_KEY}');
 
     $result = $client->GetSignedURL($agent_id);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Get Conversation Token Example
+Get a WebRTC session token for real-time communication
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+
+$agent_id = "{AGENT_ID}";
+$participantName = "{PARTICIPANT_NAME}";
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $result = $client->GetSignedURL($agent_id, $participantName);
 } catch(Exception $e) {
     echo $e->getMessage();
 }
