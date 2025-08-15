@@ -146,4 +146,34 @@ class Conversations extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Send the feedback for the given conversation
+     * 
+     * @param string the conversation id
+     * @param string the feedback, either 'like' or 'dislike'
+     */
+    public function SendConversationFeedback(string $conversation_id, ?string $feedback):object
+    {
+        $headers = [
+            "Content-Type" => "application/json",
+            "xi-api-key" => $this->GetAuthKey()
+        ];
+
+        try {
+            $body = json_encode(['feedback' => $feedback], JSON_UNESCAPED_UNICODE);
+
+            $client = new Client();
+            $result = $client->request('POST', "https://api.elevenlabs.io/v1/convai/conversations/$conversation_id/feedback", [
+                'body' => $body,
+                'headers' => $headers,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
