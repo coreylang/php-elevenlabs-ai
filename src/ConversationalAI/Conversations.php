@@ -24,17 +24,17 @@ class Conversations extends ElevenLabs
     public function GetConversationDetails(string $conversation_id): object
     {
         $headers = [
-            "Content-Type" => "application/json",
             "xi-api-key" => $this->GetAuthKey()
         ];
 
         try {
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
-                "headers" => $headers
+                "headers" => $headers,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $response = $e->getMessage();
         }
 
@@ -45,22 +45,23 @@ class Conversations extends ElevenLabs
      * Get a ElevenLabs conversation audio
      * 
      * @param string $conversation_id the conversation id
-     * @return object the response object
+     * @return mixed the response object
      */
-    public function GetConversationAudio(string $conversation_id): mixed
+    public function GetConversationAudio(string $conversation_id):mixed
     {
         $headers = [
-            "Content-Type" => "application/json",
             "xi-api-key" => $this->GetAuthKey()
         ];
 
         try {
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id/audio", [
-                "headers" => $headers
+                "headers" => $headers,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
             ]);
+            // $response = json_decode($result->getBody()->getContents(), false);
             $response = $result->getBody()->getContents();
-        } catch(Exception $e) {
+        } catch(RequestException $e) {
             $response = $e->getMessage();
         }
 
@@ -76,17 +77,18 @@ class Conversations extends ElevenLabs
     public function DeleteConversation(string $conversation_id): mixed
     {
         $headers = [
-            "Content-Type" => "application/json",
             "xi-api-key" => $this->GetAuthKey()
         ];
 
         try {
             $client = new Client();
             $result = $client->delete("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
-                "headers" => $headers
+                "headers" => $headers,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
             ]);
+
             $response = $result->getBody()->getContents();
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $response = $e->getMessage();
         }
 
@@ -108,10 +110,11 @@ class Conversations extends ElevenLabs
         try {
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=$agent_id", [
-                "headers" => $headers
+                "headers" => $headers,
+                'http_errors' => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $response = $e->getMessage();
         }
 
@@ -137,10 +140,11 @@ class Conversations extends ElevenLabs
                 "query" => [
                     'agent_id' => $agent_id,
                     'participant_name' => $participantName
-                ]
+                ],
+                'http_errors' => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $response = $e->getMessage();
         }
 
