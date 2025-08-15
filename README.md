@@ -69,7 +69,7 @@ use coreylang\ElevenLabsAI\ConversationalAI\SIPTrunk;
 try {
     $client = new SIPTrunk();
 
-    $client->SetAuthKey('{AUTH_KEY}');
+    $client->SetAuthKey('{API_KEY}');
 
     $params = [];
     // --- required
@@ -112,7 +112,7 @@ $conversationId = "{CONVERSATION_ID}";
 try {
     $client = new Conversations();
 
-    $client->SetAuthKey($authKey);
+    $client->SetAuthKey({API_KEY});
 
     $conversation = $client->GetConversationDetails($conversationId);
 } catch(Exception $e) {
@@ -134,7 +134,7 @@ $conversationId = "{CONVERSATION_ID}";
 try {
     $client = new Conversations();
 
-    $client->SetAuthKey($authKey);
+    $client->SetAuthKey('{API_KEY}');
 
     $audio = $client->GetConversationAudio($conversationId);
 } catch(Exception $e) {
@@ -156,9 +156,31 @@ $conversationId = "{CONVERSATION_ID}";
 try {
     $client = new Conversations();
 
-    $client->SetAuthKey($authKey);
+    $client->SetAuthKey('{API_KEY}');
 
     $result = $client->DeleteConversation($conversationId);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Get Signed URL Example
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Converstions;
+
+$agent_id = "{AGENT_ID}";
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $result = $client->GetSignedURL($agent_id);
 } catch(Exception $e) {
     echo $e->getMessage();
 }
