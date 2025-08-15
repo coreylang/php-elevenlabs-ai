@@ -1,5 +1,5 @@
 # PHP ElevenLabs AI
-The current release, v0.4.1-beta, has calls to Twilo, SIP Trunk, and Conversations APIs. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+The current release has calls to Twilo, SIP Trunk, and Conversations APIs. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
 
 # Need Help?
 
@@ -13,8 +13,7 @@ composer require coreylang/php-elevenlabs-ai
 ## Twilio
 
 ###  Make Outbound Call Example
-
-- Returns a response object.
+Handle an outbound call via Twilio
 
 ```php
 <?php
@@ -56,8 +55,7 @@ try {
 ## SIP Trunk
 
 ###  Make Outbound Call Example
-
-- Returns a response object.
+Handle an outbound call via SIP trunk
 
 ```php
 <?php
@@ -99,6 +97,7 @@ try {
 ## Conversations
 
 ### Get Conversation Details Example
+Get the details of a particular conversation
 
 ```php
 <?php
@@ -121,6 +120,7 @@ try {
 ```
 
 ### Get Conversation Audio Example
+Get the audio recording of a particular conversation
 
 ```php
 <?php
@@ -143,6 +143,7 @@ try {
 ```
 
 ### Delete Conversation Example
+Delete a particular conversation
 
 ```php
 <?php
@@ -165,6 +166,7 @@ try {
 ```
 
 ### Get Signed URL Example
+Get a signed url to start a conversation with an agent with an agent that requires authorization
 
 ```php
 <?php
@@ -205,6 +207,63 @@ try {
     $client->SetAuthKey('{API_KEY}');
 
     $result = $client->GetSignedURL($agent_id, $participantName);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Send Conversation Feedback Example
+Send the feedback for the given conversation
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+
+$conversation_id = "{CONVERSATION_ID}";
+$feedback = "like"; // either 'like' or 'dislike'
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $result = $client->SendConversationFeedback($conversation_id, $feedback);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### List Conversations Example
+Get all conversations of agents that user owns. With option to restrict to a specific agent.
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+
+// each option is optional
+$options = [ 
+    'cursor' => '{CURSOR_STRING}',
+    'agent_id' => '{AGENT_ID}',
+    'call_successful' => '{CALL_SUCCESSFUL}', // success, failure, or unknown
+    'call_start_before_unix' => '{CALL_START_BEFORE_UNIX_TIMESTAMP}',
+    'call_start_after_unix' => '{CALL_START_AFTER_UNIX_TIMESTAMP}',
+    'user_id' => '{USER_ID}',
+    'page_size' => '{PAGE_SIZE_INTEGER}', // >=1, <=100 defaults to 30
+    'summary_mode' => '{SUMMARY_MODE}', // either exclude, or include
+]
+
+try {
+    $client = new Conversations();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $result = $client->SendConversationFeedback($options);
 } catch(Exception $e) {
     echo $e->getMessage();
 }
