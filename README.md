@@ -339,3 +339,94 @@ try {
     echo $e->getMessage();
 }
 ```
+
+### Delete tool
+Delete tool from the workspace.
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+
+try {
+    $client = new Tools();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $tool_id = "{TOOL_ID}";
+
+    $result = $client->DeleteTool($tool_id);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Update tool
+Update tool that is available in the workspace.
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+
+try {
+    $client = new Tools();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $toolOptions = [];
+    $toolOptions['tool_config'] = [
+        'name' => 'Test_Webhook_Tool',
+        'description' => 'A test tool created by the API',
+        'api_schema' => [
+            'url' => 'https://coreylang.dev/AI/TestToolCreatedByAPI',
+            'method' => 'GET',
+        ],
+        'type' => 'webhook'
+    ];
+
+    // $toolOptions['tool_config'] = [
+    //     'name' => 'Test_Client_Tool',
+    //     'description' => 'A test tool created by the API',
+    //     'type' => 'client'
+    // ];
+
+    // $toolOptions['tool_config'] = [
+    //     'name' => 'end_call',
+    //     'description' => 'A test system tool created by the API',
+    //     'params' => ['system_tool_type' => 'end_call'],
+    //     'type' => 'system'
+    // ];
+
+    $result = $client->UpdateTool($toolId, $toolOptions);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Get dependent agents
+Get a list of agents depending on this tool
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+
+try {
+    $client = new Tools();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $tool_id = "{TOOL_ID}";
+
+    $result = $client->GetDependentAgents($tool_id);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
