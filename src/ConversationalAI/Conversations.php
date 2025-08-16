@@ -31,7 +31,7 @@ class Conversations extends ElevenLabs
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
                 "headers" => $headers,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
@@ -57,7 +57,7 @@ class Conversations extends ElevenLabs
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id/audio", [
                 "headers" => $headers,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             // $response = json_decode($result->getBody()->getContents(), false);
             $response = $result->getBody()->getContents();
@@ -84,7 +84,7 @@ class Conversations extends ElevenLabs
             $client = new Client();
             $result = $client->delete("https://api.elevenlabs.io/v1/convai/conversations/$conversation_id", [
                 "headers" => $headers,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
 
             $response = $result->getBody()->getContents();
@@ -111,7 +111,7 @@ class Conversations extends ElevenLabs
             $client = new Client();
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=$agent_id", [
                 "headers" => $headers,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
@@ -142,7 +142,7 @@ class Conversations extends ElevenLabs
                     'agent_id' => $agent_id,
                     'participant_name' => $participantName
                 ],
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
@@ -173,7 +173,7 @@ class Conversations extends ElevenLabs
             $result = $client->request('POST', "https://api.elevenlabs.io/v1/convai/conversations/$conversation_id/feedback", [
                 'body' => $body,
                 'headers' => $headers,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
@@ -212,7 +212,7 @@ class Conversations extends ElevenLabs
             $result = $client->get("https://api.elevenlabs.io/v1/convai/conversations", [
                 "headers" => $headers,
                 "query" => $options,
-                'http_errors' => false // disable throwing exceptions on HTTP errors
+                "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
