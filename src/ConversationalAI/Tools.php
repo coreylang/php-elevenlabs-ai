@@ -72,7 +72,7 @@ class Tools extends ElevenLabs
                 $result = $client->post("https://api.elevenlabs.io/v1/convai/tools", [
                     "headers" => $headers,
                     "json" => $toolOptions,
-                    'http_errors' => false // disable throwing exceptions on HTTP errors
+                    "http_errors" => false // disable throwing exceptions on HTTP errors
                 ]);
                 $response = json_decode($result->getBody()->getContents(), false);
             } catch(\Exception $e) {
@@ -99,7 +99,7 @@ class Tools extends ElevenLabs
             $client = new Client();
             $result = $client->post("https://api.elevenlabs.io/v1/convai/tools/$toolId", [
                 "headers" => $headers,
-               'http_errors' => false // disable throwing exceptions on HTTP errors
+               "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
             $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
