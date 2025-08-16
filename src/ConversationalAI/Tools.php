@@ -137,8 +137,10 @@ class Tools extends ElevenLabs
 
     /**
      * Get a list of tools
+     * 
+     * @return object a response object
      */
-    public function ListTools():object
+    public function ListTools():mixed
     {
         $headers = array(
             "xi-api-key" => $this->GetAuthKey()
@@ -150,7 +152,61 @@ class Tools extends ElevenLabs
                 "headers" => $headers,
                 "http_errors" => false // disable throwing exceptions on HTTP errors
             ]);
-            $response = $result->getBody()->getContents();
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
+
+    /**
+     * Update a tool
+     * 
+     * @param string $toolId a tool id
+     * @param array $toolOptions a list of tool options to update
+     * @return object a response object
+     */
+    public function UpdateTool(string $toolId, array $toolOptions = []):object
+    {
+        $headers = array(
+            "xi-api-key" => $this->GetAuthKey()
+        );
+
+        try {
+            $client = new Client();
+            $result = $client->request('PATCH', "https://api.elevenlabs.io/v1/convai/tools/$toolId", [
+                "headers" => $headers,
+                "json" => $toolOptions,
+                "http_errors" => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
+
+    /**
+     * Get a list of agents depending on a tool
+     * 
+     * @param string $toolId a tool id
+     * @return object a response object
+     */
+    public function GetDependentAgents(string $toolId, ?string $cursor = null, int $page_size = 30):object
+    {
+        $headers = array(
+            "xi-api-key" => $this->GetAuthKey()
+        );
+
+        try {
+            $client = new Client();
+            $result = $client->get("https://api.elevenlabs.io/v1/convai/tools/$toolId/dependent-agents", [
+                "headers" => $headers,
+                "http_errors" => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
         } catch(\Exception $e) {
             $response = $e->getMessage();
         }
