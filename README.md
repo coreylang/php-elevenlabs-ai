@@ -268,3 +268,73 @@ try {
     echo $e->getMessage();
 }
 ```
+
+## Tools
+
+### Create tool
+Add a new tool to the available tools in the workspace.
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+
+try {
+    $client = new Tools();
+
+    $client->SetAuthKey($authKey);
+
+    $params = [];
+    $params['tool_config'] = [
+        'name' => 'Test_Webhook_Tool',
+        'description' => 'A test tool created by the API',
+        'api_schema' => [
+            'url' => 'https://coreylang.dev/AI/TestToolCreatedByAPI',
+            'method' => 'GET',
+        ],
+        'type' => 'webhook'
+    ];
+
+    // $params['tool_config'] = [
+    //     'name' => 'Test_Client_Tool',
+    //     'description' => 'A test tool created by the API',
+    //     'type' => 'client'
+    // ];
+
+    // $params['tool_config'] = [
+    //     'name' => 'end_call',
+    //     'description' => 'A test system tool created by the API',
+    //     'params' => ['system_tool_type' => 'end_call'],
+    //     'type' => 'system'
+    // ];
+
+    $result = $client->CreateTool($params);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
+
+### Get tool
+Get tool that is available in the workspace.
+
+```php
+<?php
+
+require __DIR__ . "/vendor/autoload.php";
+
+use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+
+try {
+    $client = new Tools();
+
+    $client->SetAuthKey($authKey);
+
+    $tool_id = "{TOOL_ID}";
+
+    $result = $client->GetTool($tool_id);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+```
