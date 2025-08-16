@@ -1,5 +1,6 @@
 # PHP ElevenLabs AI
-The current release has calls to Twilo, SIP Trunk, and Conversations APIs. **PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+**PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+The current release has calls to Twilo, SIP Trunk, Conversations, and Tools APIs. 
 
 # Need Help?
 
@@ -25,7 +26,7 @@ use coreylang\ElevenLabsAI\ConversationalAI\Twilio;
 try {
     $client = new Twilio();
 
-    $client->SetAuthKey('{AUTH_KEY}');
+    $client->SetAuthKey('{API_KEY}');
 
     $params = [];
     // --- required
@@ -284,7 +285,7 @@ use coreylang\ElevenLabsAI\ConersationalAI\Tools;
 try {
     $client = new Tools();
 
-    $client->SetAuthKey($authKey);
+    $client->SetAuthKey('{API_KEY}');
 
     $params = [];
     $params['tool_config'] = [
@@ -329,7 +330,7 @@ use coreylang\ElevenLabsAI\ConersationalAI\Tools;
 try {
     $client = new Tools();
 
-    $client->SetAuthKey($authKey);
+    $client->SetAuthKey('{API_KEY}');
 
     $tool_id = "{TOOL_ID}";
 
