@@ -108,4 +108,53 @@ class Tools extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Delete a tool
+     * 
+     * @param string $toolId the tool id
+     * @return mixed empty string on success or a response object
+     */
+    public function DeleteTool(string $toolId):mixed
+    {
+        $headers = array(
+            "xi-api-key" => $this->GetAuthKey()
+        );
+
+        try {
+            $client = new Client();
+            $result = $client->delete("https://api.elevenlabs.io/v1/convai/tools/$toolId", [
+                "headers" => $headers,
+                "http_errors" => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = $result->getBody()->getContents();
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
+
+    /**
+     * Get a list of tools
+     */
+    public function ListTools():object
+    {
+        $headers = array(
+            "xi-api-key" => $this->GetAuthKey()
+        );
+
+        try {
+            $client = new Client();
+            $result = $client->get("https://api.elevenlabs.io/v1/convai/tools/", [
+                "headers" => $headers,
+                "http_errors" => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = $result->getBody()->getContents();
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
