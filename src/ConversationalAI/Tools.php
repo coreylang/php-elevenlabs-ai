@@ -82,4 +82,30 @@ class Tools extends ElevenLabs
 
         return $response;
     }
+
+    /**
+     * Get a tool details
+     * 
+     * @param string $toolId the tool id
+     * @return object a response object
+     */
+    public function GetTool(string $toolId):object
+    {
+        $headers = array(
+            "xi-api-key" => $this->GetAuthKey()
+        );
+
+        try {
+            $client = new Client();
+            $result = $client->post("https://api.elevenlabs.io/v1/convai/tools/$toolId", [
+                "headers" => $headers,
+               'http_errors' => false // disable throwing exceptions on HTTP errors
+            ]);
+            $response = json_decode($result->getBody()->getContents(), false);
+        } catch(\Exception $e) {
+            $response = $e->getMessage();
+        }
+
+        return $response;
+    }
 }
