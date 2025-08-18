@@ -105,7 +105,7 @@ Get the details of a particular conversation
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -128,7 +128,7 @@ Get the audio recording of a particular conversation
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -151,7 +151,7 @@ Delete a particular conversation
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $conversationId = "{CONVERSATION_ID}";
 
@@ -174,7 +174,7 @@ Get a signed url to start a conversation with an agent with an agent that requir
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $agent_id = "{AGENT_ID}";
 
@@ -197,7 +197,7 @@ Get a WebRTC session token for real-time communication
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $agent_id = "{AGENT_ID}";
 $participantName = "{PARTICIPANT_NAME}";
@@ -221,7 +221,7 @@ Send the feedback for the given conversation
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 $conversation_id = "{CONVERSATION_ID}";
 $feedback = "like"; // either 'like' or 'dislike'
@@ -245,7 +245,7 @@ Get all conversations of agents that user owns. With option to restrict to a spe
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Conversations;
+use coreylang\ElevenLabsAI\ConversationalAI\Conversations;
 
 // each option is optional
 $options = [ 
@@ -280,7 +280,7 @@ Add a new tool to the available tools in the workspace.
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+use coreylang\ElevenLabsAI\ConversationalAI\Tools;
 
 try {
     $client = new Tools();
@@ -325,7 +325,7 @@ Get tool that is available in the workspace.
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+use coreylang\ElevenLabsAI\ConversationalAI\Tools;
 
 try {
     $client = new Tools();
@@ -348,7 +348,7 @@ Delete tool from the workspace.
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+use coreylang\ElevenLabsAI\ConversationalAI\Tools;
 
 try {
     $client = new Tools();
@@ -371,7 +371,7 @@ Update tool that is available in the workspace.
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+use coreylang\ElevenLabsAI\ConversationalAI\Tools;
 
 try {
     $client = new Tools();
@@ -416,7 +416,7 @@ Get a list of agents depending on this tool
 
 require __DIR__ . "/vendor/autoload.php";
 
-use coreylang\ElevenLabsAI\ConersationalAI\Tools;
+use coreylang\ElevenLabsAI\ConversationalAI\Tools;
 
 try {
     $client = new Tools();
@@ -429,4 +429,56 @@ try {
 } catch(Exception $e) {
     echo $e->getMessage();
 }
+```
+
+### Submit Batch calling job
+Submit a batch call request to schedule calls for multiple recipients.
+
+```php
+<?php
+
+require __DIR__."/vendor/autoload.php"
+
+use coreylang\ElevenLabsAI\ConversationalAI\BatchCalling;
+
+try {
+    $client = new BatchCalling();
+
+    $client->SetAuthKey('{API_KEY}');
+
+    $params = [];
+    $params['call_name'] = "{CALL_NAME}";
+    $params['agent_id'] = "{AGENT_ID}";
+    $params['agent_phone_number_id'] = "{AGENT_PHONE_NUMBER_ID}";
+    $params['scheduled_time_unix'] = "{UNIX_TIME_STAMP}";
+    $params['recipients'] = [];
+    $params['recipients']['phone_number'] = "{PHONE_NUMBER}";
+    $params['recipients']['id'] = "{CUSTOM_ID}";
+    $params['recipients']['conversation_initiation_client_data'] = [
+        'conversation_config_override' => [
+            "agent" => [
+                'first_message' => "{FIRST_MESSAGE_TEXT}",
+                'language' => "{LANGUAGE_CODE}",
+                'prompt' => "{PROMPT_TEXT}"
+            ],
+            "conversation" => [
+                'text_only' => "{true or false}"
+            ],
+            "tts" => [
+                'voice_id' => "{VOICE_ID}"
+            ]
+        ],
+        'custom_llm_extra_body' => "{CUSTOM_LLM_TEXT}",
+        'user_id' => "{USER_ID}",
+        'source_info' => [
+            'source' => 'unknown',
+            'version' => '{VERSION_NUMBER}'
+        ]
+    ];
+
+    $result = $client->SubmitBatchCallingJob($params);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
+
 ```
