@@ -1,6 +1,4 @@
-<div style="text-align: center; margin-bottom: 50px;">
-    <img src="https://coreylang.github.io/php-elevenlabs-ai/logo_black_elephant.png" alt="PHP ElevenLabs AI" width="500"/>
-</div>
+<img src="https://coreylang.github.io/php-elevenlabs-ai/logo_black_elephant.png" alt="PHP ElevenLabs AI" width="500" style="display: block; margin: 0 auto; margin-bottom: 50px"/>
 
 # PHP ElevenLabs AI
 
