@@ -1,4 +1,6 @@
-![PHP-ElevenLabs-AI](https://coreylang.github.io/php-elevenlabs-ai/logo_black_elephant.png)
+<div style="text-align: center; margin-bottom: 50px;">
+    <img src="https://coreylang.github.io/php-elevenlabs-ai/logo_black_elephant.png" alt="PHP ElevenLabs AI" width="500"/>
+</div>
 
 # PHP ElevenLabs AI
 
