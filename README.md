@@ -1,13 +1,25 @@
+![PHP-ElevenLabs-AI](https://coreylang.github.io/php-elevenlabs-ai/logo_black_elephant.png)
+
 # PHP ElevenLabs AI
-**PHP Elevenlabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
-The current release has calls to Twilo, SIP Trunk, Conversations, and Tools APIs. 
+
+[![Latest Version](https://img.shields.io/badge/release-v0.7.2_beta-blue)](https://github.com/coreylang/php-elevenlabs-ai/releases)
+
+
+PHP ElevenLabs AI is a PHP library to make calls to the ElevenLabs Conversational AI API.
+
+**PHP ElevenLabs AI**'s current focus is the Conversational AI API. In the future we will focus on the other APIs.
+The current release has calls to Twilo, SIP Trunk, Conversations, Tools, and Batch Calling APIs. 
 
 # Need Help?
 
 Email me coreylang.dev@gmail.com
 
 ## Install
-```
+
+The recommended way to install PHP ElevenLabs AI is through
+[Composer](https://getcomposer.org/).
+
+```bash
 composer require coreylang/php-elevenlabs-ai
 ```
 
